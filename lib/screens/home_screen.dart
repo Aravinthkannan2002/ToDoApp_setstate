@@ -34,24 +34,49 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaWidth = MediaQuery.of(context).size.width;
+    final mediaHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
         title: Text(
           'TO DO',
-          style: GoogleFonts.acme(fontSize: 20, color: Colors.white),
+          style: GoogleFonts.acme(
+            fontSize: mediaWidth * 0.05, // Responsive font size
+            color: Colors.white,
+          ),
         ),
       ),
       body:
           tasks.isEmpty
               ? Center(
-                child: Text(
-                  "No tasks yet. Add one!",
-                  style: GoogleFonts.acme(fontSize: 14, color: Colors.black),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: mediaHeight * 0.02),
+                    SizedBox(
+                      height: mediaHeight * 0.25,
+                      width: mediaWidth * 0.5,
+                      child: Image.asset("assets/images/no_data.png"),
+                    ),
+                    SizedBox(height: mediaHeight * 0.02),
+                    Text(
+                      "No tasks yet. Add one!",
+                      style: GoogleFonts.acme(
+                        fontSize: mediaWidth * 0.035,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
               )
               : ListView.builder(
+                padding: EdgeInsets.symmetric(
+                  vertical: mediaHeight * 0.02,
+                  horizontal: mediaWidth * 0.04,
+                ),
                 itemCount: tasks.length,
                 itemBuilder: (context, index) {
                   return TaskTile(

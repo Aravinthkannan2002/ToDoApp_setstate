@@ -20,37 +20,57 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaWidth = MediaQuery.of(context).size.width;
+    final mediaHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
         title: Text(
           "Add Task",
-          style: GoogleFonts.acme(fontSize: 22, color: Colors.white),
+          style: GoogleFonts.acme(
+            fontSize: mediaWidth * 0.055,
+            color: Colors.white,
+          ),
         ),
         elevation: 2,
       ),
       body: SingleChildScrollView(
-        physics: const  BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: EdgeInsets.all(mediaWidth * 0.06),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              SizedBox(height: mediaHeight * 0.02),
+              SizedBox(
+                height: mediaHeight * 0.25,
+                width: mediaWidth * 0.5,
+                child: Image.asset("assets/images/add_task.png"),
+              ),
+              SizedBox(height: mediaHeight * 0.02),
               Text(
                 "What's on your mind?",
-                style: GoogleFonts.acme(fontSize: 18, color: Colors.black87),
+                style: GoogleFonts.acme(
+                  fontSize: mediaWidth * 0.045,
+                  color: Colors.black87,
+                ),
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: mediaHeight * 0.03),
               TextField(
                 controller: _controller,
-                style: GoogleFonts.acme(fontSize: 16),
+                style: GoogleFonts.acme(fontSize: mediaWidth * 0.04),
                 decoration: InputDecoration(
                   hintText: "Enter task title",
-                  hintStyle: GoogleFonts.acme(color: Colors.grey),
+                  hintStyle: GoogleFonts.acme(
+                    color: Colors.grey,
+                    fontSize: mediaWidth * 0.04,
+                  ),
                   labelStyle: GoogleFonts.acme(),
                   filled: true,
                   fillColor: Colors.white,
@@ -67,12 +87,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
                 onSubmitted: (_) => _submitTask(),
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: mediaHeight * 0.05),
               ElevatedButton(
                 onPressed: _submitTask,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  padding: EdgeInsets.symmetric(vertical: mediaHeight * 0.02),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -80,7 +100,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
                 child: Text(
                   "Save",
-                  style: GoogleFonts.acme(fontSize: 18, color: Colors.white),
+                  style: GoogleFonts.acme(
+                    fontSize: mediaWidth * 0.045,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ],

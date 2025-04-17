@@ -36,11 +36,14 @@ class TaskTile extends StatelessWidget {
               task.title,
               style: GoogleFonts.acme(
                 fontSize: 14,
-                color: Colors.black,
+                fontWeight:
+                    task.isCompleted ? FontWeight.bold : FontWeight.normal,
+                color: task.isCompleted ? Colors.green : Colors.black,
                 decoration:
                     task.isCompleted ? TextDecoration.lineThrough : null,
               ),
             ),
+
             trailing: IconButton(
               icon: const Icon(Icons.delete, color: Colors.red),
               onPressed: onDelete,
